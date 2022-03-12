@@ -21,7 +21,12 @@ class _HomePageState extends State<HomePage> {
       body:
           Padding(
         padding: const EdgeInsets.all(8.0),
-        child:
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: _handleClickButton,
+              child: const Text('LOAD FOODS DATA'),
+            ),
             Expanded(
                 child: ListView.builder(
                     itemCount: food.length,
@@ -46,6 +51,8 @@ class _HomePageState extends State<HomePage> {
     var result = await http.get(url);
     var json = jsonDecode(result.body);
     food = json['data'];
+    var food_length = food.length;
+    print("Length of List: $food_length ");
     print(food);
   }
 }
